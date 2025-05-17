@@ -1,0 +1,14 @@
+Algorithm 1. Headword-based Skill Finder
+Input: H, a table of headwords and their syntactic pattern graphs; I, a term- dependency index
+Output: T, a confidence score for all terms
+T{t: 0| t∈ I}
+for all h∈ H do
+	for all i∈ I[h] do
+		TREESEARCH(i, H[h], h)
+for all t∈T do 
+T[t] ← T[t]/|I[t]|
+function TREESEARCH (i, D, t)
+	for all (t', d) ∈ I[t][i] do
+		(D', w) ← D[d]
+		T[t'] ← T[t'] + w
+		TREESEARCH (i, D', t')
